@@ -23,6 +23,7 @@ endif
 
 syn keyword ballerinaExternal	    package
 syn match   ballerinaExternal	    "\<import\>\(\s\+version\>\)\?"
+syn keyword ballerinaConstant     const
 syn match   ballerinaLineComment	"//.*"
 syn keyword ballerinaConditional	if else try catch fork join timeout
 syn keyword ballerinaRepeat       while iterate
@@ -51,6 +52,7 @@ if version >= 508 || !exists("did_ballerina_syn_inits")
     let did_ballerina_syn_inits = 1
   endif
    BallerinaHiLink ballerinaExternal		  Include
+   BallerinaHiLink ballerinaConstant      Constant
    BallerinaHiLink ballerinaConditional		Conditional
    BallerinaHiLink ballerinaLineComment   Comment
    BallerinaHiLink ballerinaRepeat        Repeat
