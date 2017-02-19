@@ -24,21 +24,26 @@ endif
 syn keyword ballerinaExternal	    package
 syn match   ballerinaExternal	    "\<import\>\(\s\+version\>\)\?"
 syn match   ballerinaLineComment	"//.*"
-syn keyword ballerinaConditional	if else try catch
+syn keyword ballerinaConditional	if else try catch fork join timeout
 syn keyword ballerinaRepeat       while iterate
 syn keyword ballerinaBoolean		  true false
 syn keyword ballerinaPriType      boolean int long float double string json xml
 syn keyword ballerinaNonPriType   message map exception
-syn keyword ballerinaOperator     new
+syn keyword ballerinaOperator     create
 syn match   ballerinaAnnotation	  "@\([_$a-zA-Z][_$a-zA-Z0-9]*\.\)*[_$a-zA-Z][_$a-zA-Z0-9]*\>"
 syn region  ballerinaString       start=+"+ end=+"+ end=+$+ contains=@Spell
-syn keyword ballerinaStatement    return reply throw
+syn keyword ballerinaStatement    return reply throw break
 syn keyword ballerinaScopeDecl    public
-syn match   ballerinaServiceDecl	"^service\>"
+syn match   ballerinaNumber		 "\<\(0[0-7]*\|0[xX]\x\+\|\d\+\)[lL]\=\>"
+syn match   ballerinaNumber		 "\(\<\d\+\.\d*\|\.\d\+\)\([eE][-+]\=\d\+\)\=[fFdD]\="
+syn match   ballerinaNumber		 "\<\d\+[eE][-+]\=\d\+[fFdD]\=\>"
+syn match   ballerinaNumber		 "\<\d\+\([eE][-+]\=\d\+\)\=[fFdD]\>"
+syn match   ballerinaServiceDecl	"^service\s*\>" contains=ballerinaScopeDecl,ballerinaPriType,ballerinaNonPriType
 syn match   ballerinaFuncDef      "^function\s*\>" contains=ballerinaScopeDecl,ballerinaPriType,ballerinaNonPriType
-syn match   ballerinaResDef       "^resource\s*\>" contains=ballerinaScopeDecl,ballerinaPriType,ballerinaNonPriType
+syn match   ballerinaResDef       "resource\s*\>" contains=ballerinaScopeDecl,ballerinaPriType,ballerinaNonPriType
 syn match   ballerinaConnectorDef "^connector\s*\>" contains=ballerinaScopeDecl,ballerinaPriType,ballerinaNonPriType
-
+syn match   ballerinaActionDef    "action\s*\>" contains=ballerinaScopeDecl,ballerinaPriType,ballerinaNonPriType
+syn match   ballerinaWorkerDef    "worker\s*\>" contains=ballerinaScopeDecl,ballerinaPriType,ballerinaNonPriType
 
 " The default highlighting.
 if version >= 508 || !exists("did_ballerina_syn_inits")
@@ -57,10 +62,13 @@ if version >= 508 || !exists("did_ballerina_syn_inits")
    BallerinaHiLink ballerinaString		    String
    BallerinaHiLink ballerinaStatement     Statement
    BallerinaHiLink ballerinaScopeDecl     StorageClass
+   BallerinaHiLink ballerinaNumber        Number
    BallerinaHiLink ballerinaServiceDecl   StorageClass
    BallerinaHiLink ballerinaFuncDef       Function
    BallerinaHiLink ballerinaResDef        Function
    BallerinaHiLink ballerinaConnectorDef  Function
+   BallerinaHiLink ballerinaActionDef     Function
+   BallerinaHiLink ballerinaWorkerDef     Function
 endif
 
 delcommand BallerinaHiLink
