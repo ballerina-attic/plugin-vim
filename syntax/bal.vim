@@ -28,7 +28,7 @@ syn match   ballerinaLineComment	"//.*"
 syn keyword ballerinaConditional	if else try catch fork join timeout
 syn keyword ballerinaRepeat       while iterate
 syn keyword ballerinaBoolean		  true false
-syn keyword ballerinaPriType      boolean int long float double string json xml
+syn keyword ballerinaPriType      boolean int long float double string json xml var any
 syn keyword ballerinaNonPriType   message map exception
 syn keyword ballerinaOperator     create
 syn match   ballerinaAnnotation	  "@\([_$a-zA-Z][_$a-zA-Z0-9]*\.\)*[_$a-zA-Z][_$a-zA-Z0-9]*\>"
